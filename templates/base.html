@@ -15,8 +15,11 @@
     <a href="#">Code to Image</a>: <span>Paste Your Python Code 🐍</span>
     </h1>
     <main>
-      {% block content %}
-      {% endblock content %}
+        <form action="/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit">
+        </form>
     </main>
   </body>
 </html>
