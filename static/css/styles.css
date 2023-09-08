@@ -59,4 +59,7 @@ select {
     border: 1px solid #cecece;
     margin: 1em;
     line-height: 1.4em;
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
 }
