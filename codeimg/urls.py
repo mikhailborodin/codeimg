@@ -19,9 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import CodeFormView
+from .views import CodeFormView, download_image
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', CodeFormView.as_view(), name="main")
+    path('', CodeFormView.as_view(), name="main"),
+    path('download', download_image, name="download_image")
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
