@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>
+      Code to Image {% block title %}{% endblock title %}
+    </title>
+    <style>
+      {{ style_definitions }}
+
+      .code {
+        background-color: {{ style_bg_color }};
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+    <a href="#">Code to Image</a>: <span>Paste Your Python Code 🐍</span>
+    </h1>
+    <main>
+        <form action="/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="controls">
+                <select name="style">
+                  {% for style_name in all_styles %}
+                    <option value="{{ style_name }}">{{ style_name }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <input type="submit">
+        </form>
+    </main>
+    <div class="controls"><a href="{% url 'download_image' %}">Download as image</a></div>
+    <div class="code">
+        {{ highlighted_code | safe }}
+    </div>
+  </body>
+</html>
